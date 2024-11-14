@@ -1,1 +1,2 @@
-Ð†Ð Sofiia Horlach 528
+Sofiia Horlach 528
+Bogdan Kovalenko
