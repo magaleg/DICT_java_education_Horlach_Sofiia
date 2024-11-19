@@ -28,7 +28,6 @@ public class ChatBot {
         for (int i = 0; i <= num; i++) {
             System.out.println(i + "!");
         }
-
         Scanner scanner2 = new Scanner(System.in);
 
         System.out.println("Let's test your programming knowledge.");
