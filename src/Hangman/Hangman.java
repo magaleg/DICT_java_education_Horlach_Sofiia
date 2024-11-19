@@ -5,6 +5,23 @@ import java.util.*;
 public class Hangman {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        System.out.println("HANGMAN");
+
+        while (true) {
+            System.out.print("Type \"play\" to play the game, \"exit\" to quit: > ");
+            String command = scanner.nextLine().trim();
+
+            if (command.equals("play")) {
+                playGame(scanner);
+            } else if (command.equals("exit")) {
+                break;
+            } else {
+                System.out.println("Invalid input. Please type \"play\" or \"exit\".");
+            }
+        }
+    }
+
+    public static void playGame(Scanner scanner) {
         String[] words = {"python", "java", "javascript", "kotlin"};
         String wordToGuess = words[new Random().nextInt(words.length)];
 
@@ -13,12 +30,11 @@ public class Hangman {
         Arrays.fill(displayWord, '-');
 
         int remainingAttempts = 8;
-        System.out.println("HANGMAN");
 
         while (remainingAttempts > 0) {
             System.out.println(String.valueOf(displayWord));
             System.out.print("Input a letter: > ");
-            String input = scanner.next();
+            String input = scanner.next().trim();
 
             // Перевірка введення
             if (input.length() != 1) {
@@ -53,10 +69,12 @@ public class Hangman {
             if (String.valueOf(displayWord).equals(wordToGuess)) {
                 System.out.println("You guessed the word " + wordToGuess + "!");
                 System.out.println("You survived!");
+                scanner.nextLine();
                 return;
             }
         }
 
         System.out.println("You lost!");
+        scanner.nextLine();
     }
 }
