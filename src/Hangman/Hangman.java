@@ -1,24 +1,21 @@
 package Hangman;
 
-import java.util.HashSet;
-import java.util.Scanner;
+import java.util.*;
 
 public class Hangman {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         String[] words = {"python", "java", "javascript", "kotlin"};
-        String wordToGuess = words[(int) (Math.random() * words.length)];
+        String wordToGuess = words[new Random().nextInt(words.length)];
 
         HashSet<Character> guessedLetters = new HashSet<>();
         char[] displayWord = new char[wordToGuess.length()];
-        for (int i = 0; i < displayWord.length; i++) {
-            displayWord[i] = '-';
-        }
+        Arrays.fill(displayWord, '-');
 
-        int attemptsLeft = 8;
+        int remainingAttempts = 8;
         System.out.println("HANGMAN");
 
-        while (attemptsLeft > 0) {
+        while (remainingAttempts > 0) {
             System.out.println(String.valueOf(displayWord));
             System.out.print("Input a letter: > ");
             char guess = scanner.next().charAt(0);
@@ -29,18 +26,16 @@ public class Hangman {
             }
 
             guessedLetters.add(guess);
-            boolean correctGuess = false;
 
-            for (int i = 0; i < wordToGuess.length(); i++) {
-                if (wordToGuess.charAt(i) == guess) {
-                    displayWord[i] = guess;
-                    correctGuess = true;
+            if (wordToGuess.contains(String.valueOf(guess))) {
+                for (int i = 0; i < wordToGuess.length(); i++) {
+                    if (wordToGuess.charAt(i) == guess) {
+                        displayWord[i] = guess;
+                    }
                 }
-            }
-
-            if (!correctGuess) {
+            } else {
                 System.out.println("That letter doesn't appear in the word");
-                attemptsLeft--;
+                remainingAttempts--;
             }
 
             if (String.valueOf(displayWord).equals(wordToGuess)) {
