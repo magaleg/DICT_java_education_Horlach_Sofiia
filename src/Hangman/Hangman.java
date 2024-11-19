@@ -11,8 +11,10 @@ public class Hangman {
         Random random = new Random();
         String randomWord = words[random.nextInt(words.length)];
 
+        String hint = randomWord.substring(0, 2) + "-".repeat(randomWord.length() - 2);
+
         System.out.println("HANGMAN");
-        System.out.print("Guess the word: > ");
+        System.out.println("Guess the word " + hint + ": > ");
 
         String guess = scanner.nextLine();
 
