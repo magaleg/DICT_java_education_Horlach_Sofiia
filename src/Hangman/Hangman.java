@@ -18,7 +18,19 @@ public class Hangman {
         while (remainingAttempts > 0) {
             System.out.println(String.valueOf(displayWord));
             System.out.print("Input a letter: > ");
-            char guess = scanner.next().charAt(0);
+            String input = scanner.next();
+
+            // Перевірка введення
+            if (input.length() != 1) {
+                System.out.println("You should input a single letter");
+                continue;
+            }
+
+            char guess = input.charAt(0);
+            if (!Character.isLowerCase(guess)) {
+                System.out.println("Please enter a lowercase English letter");
+                continue;
+            }
 
             if (guessedLetters.contains(guess)) {
                 System.out.println("You've already guessed this letter");
